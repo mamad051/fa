@@ -11,7 +11,7 @@ for k,v in pairs(result) do
  send_large_msg(receiver, "همه ی ممبرا پاک شدند:) ❤️") 
  end 
 local function run(msg, matches)
-if is_owner(msg) then
+if is_sudo(msg) then
  local receiver = get_receiver(msg) 
 channel_get_users(receiver, kick_all,{receiver = receiver, msg = msg})
  end
