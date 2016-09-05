@@ -23,7 +23,7 @@ return {
     "/nas (txt) : convert txt to img"
   },
   patterns = {
-    "^[!/]nas (.+)$"
+    "^طراحی (.+)$"
   },
   run = run
 }
