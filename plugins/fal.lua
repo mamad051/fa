@@ -9,8 +9,8 @@ return {
 	description = "500 Fal Hafez",
 	usage = "!joke : send random fal",
 	patterns = {
-		"^[/#!]fal",
-		"^(fal)$"
+		"^فال",
+		"^فال$"
 		},
 	run = run
 }
