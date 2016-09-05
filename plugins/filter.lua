@@ -15,9 +15,9 @@ local function list_variablesbad(msg)
 
   if hash then
     local names = redis:hkeys(hash)
-    local text = 'Filtered words list :\n\n'
+    local text = 'لیست کلمات فیلتر شده :\n➖➖➖➖➖➖➖➖➖➖➖➖➖➖'
     for i=1, #names do
-      text = text..'> '..names[i]..'\n'
+      text = text..'> '..names[i]..'\n---------------'
     end
     return text
 	else
@@ -71,23 +71,23 @@ function clear_commandsbad(msg, cmd_name)
 end
 
 local function run(msg, matches)
-  if matches[2] == 'filter' then
+  if matches[2] == 'فیلتر' then
   if not is_momod(msg) then
-   return 'only for moderators'
+   return ''
   end
   local name = string.sub(matches[3], 1, 50)
 
   local text = addword(msg, name)
   return text
   end
-  if matches[2] == 'filterlist' then
+  if matches[2] == 'لیست فیلتر' then
   return list_variablesbad(msg)
-  elseif matches[2] == 'clean' then
-if not is_momod(msg) then return '_|_' end
+  elseif matches[2] == 'پاک کردن' then
+if not is_momod(msg) then return 'پاک شدند' end
   local asd = '1'
     return clear_commandbad(msg, asd)
-  elseif matches[2] == 'unfilter' or matches[2] == 'rw' then
-   if not is_momod(msg) then return '_|_' end
+  elseif matches[2] == 'حذف فیلتر' or matches[2] == 'حذف' then
+   if not is_momod(msg) then return 'حذف شد' end
     return clear_commandsbad(msg, matches[3])
   else
     local name = user_print_name(msg.from)
@@ -98,11 +98,11 @@ end
 
 return {
   patterns = {
-  "^([!/#])(rw) (.*)$",
-  "^([!/#])(filter) (.*)$",
-   "^([!/#])(unfilter) (.*)$",
-    "^([!/#])(filterlist)$",
-    "^([!/#])(clean) filterlist$",
+  "^حذف (.*)$",
+  "^فیلتر (.*)$",
+   "^حذف فیلتر (.*)$",
+    "^لیست فیلتر$",
+    "^پاک کردن لیست فیلتر$",
 "^(.+)$",
 	   
   },
