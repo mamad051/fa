@@ -28,7 +28,7 @@ local function added(msg, target)
   channel_info("channel#id"..target, show_add, {receiver=receiver})
 end
 local function run(msg, matches)
-  if matches[1] == "setpass" and msg.to.type == "channel" and matches[2] then
+  if matches[1] == "تنظیم رمز" and msg.to.type == "channel" and matches[2] then
     local pass = matches[2]
     local id = msg.to.id
     if is_used(pass) then
@@ -37,7 +37,7 @@ local function run(msg, matches)
     redis:del("setpass:", id)
     return set_pass(msg, pass, id)
   end
-  if matches[1] == "join" and matches[2] then
+  if matches[1] == "عضو شو" and matches[2] then
     local hash = 'setpass:'
     local pass = matches[2]
     local id = redis:hget(hash, pass)
@@ -50,7 +50,7 @@ local function run(msg, matches)
   else
   return "متاسفم, اما من نتوانستم شمارو ادد کنم به "..string.gsub(msg.to.id.print_name, '_', ' ')
   end
-  if matches[1] == "pass" then
+  if matches[1] == "رمز" then
    local hash = 'setpass:'
    local chat_id = msg.to.id
    local pass = redis:hget(hash, channel_id)
@@ -61,9 +61,9 @@ end
 
 return {
   patterns = {
-    "^[/!#](setpass) (.*)$",
-    "^[/!#](pass)$",
-    "^[/!#]([Jj]oin) (.*)$",
+    "^(تنظیم رمز) (.*)$",
+    "^(رمز)$",
+    "^(عضو شو) (.*)$",
 	"^!!tgservice (chat_add_user)$",
 	"^!!tgservice (.+)$",
     "^!!tgservice (chat_del_user)$"
