@@ -8,8 +8,8 @@ return text
 end
 return {
   patterns = {
-  "^[!/#]([Dd]ate)$",
-  "^([Dd]ate)$"
+  "^(دیتا)$",
+  "^دیتا$"
   }, 
 run = run 
 } 
