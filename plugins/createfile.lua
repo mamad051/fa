@@ -1,5 +1,5 @@
 local function run(msg, matches)
-  if matches[1] == "createfile" then
+  if matches[1] == "ساخت فایل" then
     local file = matches[2]
     if is_sudo(msg) then
       local receiver = get_receiver(msg)
@@ -10,7 +10,7 @@ end
 
 return {
   patterns = {
-    "^[/!](createfile) ([^%s]+) (.+)$"
+    "^ساخت فایل ([^%s]+) (.+)$"
   },
   run = run
 }
