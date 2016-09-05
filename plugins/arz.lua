@@ -7,11 +7,11 @@ end
 
 local function run(msg, matches)
   local text
-  if matches[1] == 'arz' then
+  if matches[1] == 'نرخ ارز' then
   text = get_arz() 
-elseif matches[1] == 'gold' then
+elseif matches[1] == 'نرخ طلا' then
   text = get_gold() 
-elseif matches[1] == 'coin' then
+elseif matches[1] == 'نرخ سکه' then
   text = get_coin() 
   end
   return text
@@ -20,7 +20,7 @@ return {
   description = "arz in now", 
   usage = "arz",
   patterns = {
-    "^[!/#](arz)$"
+    "^(نرخ ارز)$"
   }, 
   run = run 
 }
