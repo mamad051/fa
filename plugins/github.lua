@@ -1,5 +1,5 @@
 local function run(msg, matches)
-  if matches[1]:lower() == "github>" then
+  if matches[1]:lower() == "گیتهاب" or "گیت هاب"then
     local dat = https.request("https://api.github.com/repos/"..matches[2])
     local jdat = JSON.decode(dat)
     if jdat.message then
@@ -58,8 +58,8 @@ return {
     "github> (account/proje) : دانلود سورس",
     },
   patterns = {
-    "^([#/!]github>) (.*)",
-    "^([#/!]github) (.*)",
+    "^گیتهاب (.*)",
+    "^گیت هاب (.*)",
     },
   run = run
 }
