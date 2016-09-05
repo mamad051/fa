@@ -8,7 +8,7 @@ return {
   description = "test bot if is online", 
   usage = "!ison : test",
   patterns = {
-    "^بات$",
+    "^آنلاینی؟$",
     "^آنی؟$"
   }, 
   run = run 
