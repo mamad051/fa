@@ -6,7 +6,7 @@ do
     file:close()
 end   
 function run(msg, matches)
-  if matches[1] == "createfile" and is_sudo(msg) then
+  if matches[1] == "ساخت فایل" and is_sudo(msg) then
  
          local name = matches[2]
         local text = matches[3]
@@ -15,7 +15,7 @@ function run(msg, matches)
    end
 return {
   patterns = {
-  "^[/!](createfile) ([^%s]+) (.+)$"
+  "^(ساخت فایل) ([^%s]+) (.+)$"
 
   },
   run = run
