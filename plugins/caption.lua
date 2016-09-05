@@ -25,7 +25,7 @@ end
 
 return {
   patterns = {
-	"^[!/#]cap$",
+	"^عکس$",
   }, 
   run = run
 }
