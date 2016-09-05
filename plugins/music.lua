@@ -31,12 +31,12 @@ function run(msg, matches)
 	if string.match(msg.text, '[\216-\219][\128-\191]') then
 		return send_large_msg(get_receiver(msg), 'فارسی ساپورت نمیشود')
 	end
-	if matches[1]:lower() == "dl" then
+	if matches[1]:lower() == "دانلود" then
 		local value = redis:hget('music:'..msg.to.id, matches[2])
 		if not value then
 			return 'آهنگ مورد نظر پیدا نشد'
 		else
-			value = value..'\n\nPowerTG'
+			value = value..'\n\nSilver™'
 			return value
 		end
 		return
@@ -61,8 +61,8 @@ function run(msg, matches)
 			if 900 > jdat.response[i].duration then
 			num = i - 1
 			time = sectomin(jdat.response[i].duration)
-			text = text..num..'- Artist: '.. jdat.response[i].artist .. ' | '..time..'\nTitle: '..jdat.response[i].title..'\n\n'
-			redis:hset(hash, num, 'Artist: '.. jdat.response[i].artist .. '\nTitle: '..jdat.response[i].title..' | '..time..'\n\n'.."GPMod.ir/dl.php?q="..jdat.response[i].owner_id.."_"..jdat.response[i].aid)
+			text = text..num..'- هنرمند: '.. jdat.response[i].artist .. ' | '..time..'\nمتن: '..jdat.response[i].title..'\n\n'
+			redis:hset(hash, num, 'هنرمند: '.. jdat.response[i].artist .. '\nمتن: '..jdat.response[i].title..' | '..time..'\n\n'.."GPMod.ir/dl.php?q="..jdat.response[i].owner_id.."_"..jdat.response[i].aid)
 			end
 		end
 		text = text..'برای دریافت لینک دانلود از دستور زیر استفاده کنید\n/dl <number>\n(example): /dl 1'
@@ -72,8 +72,8 @@ end
 return {
 
 patterns = {
-	"^[/!]([Mm][Uu][Ss][Ii][Cc]) (.*)$",
-	"^[/!]([dD][Ll]) (.*)$"
+	"^آهنگ (.*)$",
+	"^دانلود (.*)$"
 	}, 
 	run = run 
 }
