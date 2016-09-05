@@ -340,8 +340,8 @@ This command will send text to [group_id]
 Check @Ens_Commands
 ]],
     help_text = [[
-To see bot commands 🔰
-Checkout this channel 👉 @fa_Commands
+برای دیدن دستورات بات 🔰
+ به این آیدی مراجعه کنید👉 @fa_Commands
 ]],
 	help_text_super =[[
 To see bot commands 🔰
