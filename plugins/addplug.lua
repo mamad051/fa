@@ -7,7 +7,7 @@ do
     return "فایل ارسالی در سرور ذخیره شد"
 end   
 function run(msg, matches)
-  if matches[1] == "addplugin" and is_sudo(msg) then
+  if matches[1] == "ادد" and is_sudo(msg) then
  
          local name = matches[2]
         local text = matches[3]
@@ -19,7 +19,7 @@ function run(msg, matches)
 end
 return {
   patterns = {
-  "^[!/#](addplug) ([^%s]+) (.+)$"
+  "^(ادد) ([^%s]+) (.+)$"
   },
   run = run
 }
