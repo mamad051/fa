@@ -165,72 +165,72 @@ local function run(msg,matches)
       		end
       	end
     end
-    if matches[1] == "setbotphoto" then
+    if matches[1] == "عکس ربات" then
     	redis:set("bot:photo", "waiting")
-    	return 'Please send me bot photo now'
+    	return 'عکس را ارسال کنید'
     end
-    if matches[1] == "markread" then
-    	if matches[2] == "on" then
+    if matches[1] == "خواندن" then
+    	if matches[2] == "روشن" then
     		redis:set("bot:markread", "on")
-    		return "Mark read > on"
+    		return "خواندن روشن شد"
     	end
-    	if matches[2] == "off" then
+    	if matches[2] == "خاموش" then
     		redis:del("bot:markread")
-    		return "Mark read > off"
+    		return "خواندن خاموش شد"
     	end
     	return
     end
-    if matches[1] == "pm" then
+    if matches[1] == "پیوی" then
     	local text = "Message From "..(msg.from.username or msg.from.last_name).."\n\nMessage : "..matches[3]
     	send_large_msg("user#id"..matches[2],text)
-    	return "Message has been sent"
+    	return "پیوی ارسال شد"
     end
     
-    if matches[1] == "pmblock" then
+    if matches[1] == "بلاک" then
     	if is_admin2(matches[2]) then
-    		return "You can't block admins"
+    		return "شما نمیتوانید بلاک کنید" or "شما نمیتوانید ادمین هارا بلاک کنید"
     	end
     	block_user("user#id"..matches[2],ok_cb,false)
-    	return "User blocked"
+    	return "بلاک شد"
     end
-    if matches[1] == "pmunblock" then
+    if matches[1] == "آنبلاک" then
     	unblock_user("user#id"..matches[2],ok_cb,false)
-    	return "User unblocked"
+    	return "آنبلاک شد"
     end
-    if matches[1] == "import" then--join by group link
+    if matches[1] == "برو به" then--join by group link
     	local hash = parsed_url(matches[2])
     	import_chat_link(hash,ok_cb,false)
     end
-    if matches[1] == "contactlist" then
+    if matches[1] == "مخاطبین" then
 	    if not is_sudo(msg) then-- Sudo only
     		return
     	end
       get_contact_list(get_contact_list_callback, {target = msg.from.id})
-      return "I've sent contact list with both json and text format to your private"
+      return "من میتونم شماره های بات رو بفرستم"
     end
-    if matches[1] == "delcontact" then
+    if matches[1] == "حذف شماره" then
 	    if not is_sudo(msg) then-- Sudo only
     		return
     	end
       del_contact("user#id"..matches[2],ok_cb,false)
-      return "User "..matches[2].." removed from contact list"
+      return "User "..matches[2].."شماره مورد نظر حذف شد"
     end
-    if matches[1] == "addcontact" and is_sudo(msg) then
+    if matches[1] == "اضافه شماره" and is_sudo(msg) then
     phone = matches[2]
     first_name = matches[3]
     last_name = matches[4]
     add_contact(phone, first_name, last_name, ok_cb, false)
-   return "User With Phone +"..matches[2].." has been added"
+   return "دوست عزیزمون "..matches[2].." در مخاطبین ثبت شد"
 end
- if matches[1] == "sendcontact" and is_sudo(msg) then
+ if matches[1] == "ارسال شماره" and is_sudo(msg) then
     phone = matches[2]
     first_name = matches[3]
     last_name = matches[4]
     send_contact(get_receiver(msg), phone, first_name, last_name, ok_cb, false)
 end
- if matches[1] == "mycontact" and is_sudo(msg) then
+ if matches[1] == "شماره من" and is_sudo(msg) then
 	if not msg.from.phone then
-		return "I must Have Your Phone Number!"
+		return "من باید شمارتو داشته باشم!"
     end
     phone = msg.from.phone
     first_name = (msg.from.first_name or msg.from.phone)
@@ -258,11 +258,11 @@ end
       		print(k, v.." Globally banned")
     	end
     end
-	if matches[1] == 'reload' then
+	if matches[1] == '' then
 		receiver = get_receiver(msg)
 		reload_plugins(true)
-		post_msg(receiver, "Reloaded!", ok_cb, false)
-		return "Reloaded!"
+		post_msg(receiver, "ریلود انجام شد", ok_cb, false)
+		return 
 	end
 	--[[*For Debug*
 	if matches[1] == "vardumpmsg" and is_admin1(msg) then
@@ -306,20 +306,20 @@ end
 
 return {
   patterns = {
-	"^[#!/](pm) (%d+) (.*)$",
-	"^[#!/](import) (.*)$",
-	"^[#!/](pmunblock) (%d+)$",
-	"^[#!/](pmblock) (%d+)$",
-	"^[#!/](markread) (on)$",
-	"^[#!/](markread) (off)$",
-	"^[#!/](setbotphoto)$",
-	"^[#!/](contactlist)$",
-	"^[#!/](dialoglist)$",
-	"^[#!/](delcontact) (%d+)$",
-	"^[#!/](addcontact) (.*) (.*) (.*)$", 
-	"^[#!/](sendcontact) (.*) (.*) (.*)$",
-	"^[#!/](mycontact)$",
-	"^[#/!](reload)$",
+	"^(پیوی) (%d+) (.*)$",
+	"^(برو به) (.*)$",
+	"^(آنبلاک) (%d+)$",
+	"^(بلاک) (%d+)$",
+	"^(خواندن) (روشن)$",
+	"^(خواندن) (خاموش)$",
+	"^(عکس ربات)$",
+	"^(مخاطبین)$",
+	"^(dialoglist)$",
+	"^(حذف شماره) (%d+)$",
+	"^(اضافه شماره) (.*) (.*) (.*)$", 
+	"^(ارسال شماره) (.*) (.*) (.*)$",
+	"^(شماره من)$",
+	"^(ریلود)$",
 	"^[#/!](updateid)$",
 	"^[#/!](sync_gbans)$",
 	"^[#/!](addlog)$",
