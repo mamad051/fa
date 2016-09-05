@@ -1,15 +1,15 @@
 ﻿local function run(msg, matches)
-if matches[1] == 'kickme' then
+if matches[1] == 'کیکم کن' or 'اخراجم کن' then
 local hash = 'kick:'..msg.to.id..':'..msg.from.id
      redis:set(hash, "waite")
-      return '🔖کاربر عزیز ('..msg.from.username..')\nشما درخواست اخراج خود از گروه را ارسال کردید\nاگر با این درخواست موافقت دارید عبارت yes را ارسال کنید'
+      return '🔖هوی کسکش خر ('..msg.from.username..')\nمیخوای کیکت کنم یا نه؟؟\n\nفقط بگو اره یا نه'
     end
 
     if msg.text then
 	local hash = 'kick:'..msg.to.id..':'..msg.from.id
-      if msg.text:match("^yes$") and redis:get(hash) == "waite" then
+      if msg.text:match("^اره$") and redis:get(hash) == "waite" then
 	  redis:set(hash, "ok")
-	elseif msg.text:match("^no$") and redis:get(hash) == "waite" then
+	elseif msg.text:match("^نه$") and redis:get(hash) == "waite" then
 	send_large_msg(get_receiver(msg), "کرم داری ؟ ")
 	  redis:del(hash, true)
 
@@ -19,16 +19,17 @@ local hash = 'kick:'..msg.to.id..':'..msg.from.id
 	 if redis:get(hash) then
         if redis:get(hash) == "ok" then
          channel_kick("channel#id"..msg.to.id, "user#id"..msg.from.id, ok_cb, false)
-         return '❌کاربر مورد نظر بنابر درخواست خود از گروه ('..msg.to.title..') اخراج شد'
+         return '❌😊شرت کم ('..msg.to.title..')'
         end
       end
     end
 
 return {
   patterns = {
-  "kickme",
-  "^yes$",
-  "^no$"
+  "کیکم کن",
+  "اخراجم کن",
+  "^اره$",
+  "^نه$"
   },
   run = run,
 }
