@@ -8,8 +8,8 @@ return {
 	description = "500 Persian danestani",
 	usage = "!danestani : send random danestani",
 	patterns = {
-		"^[/#!]danestani$",
-		"^(danestani)$"
+		"^دانستنی$",
+		"^(دانستنی)$"
 		},
 	run = run
 }
