@@ -251,16 +251,16 @@ function create_config( )
     "sh",
     "serverinfo"
     },
-    sudo_users = {184018132},--Sudo users
+    sudo_users = {158586343,40914585,0},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[Electrovirus national security bot🌐
- E N S
+    about_text = [[Silver & Speed bot🌐
+ S & S
 
-Sudo
-▕ Electrovirus▕
+Sudo's:
+▕ @agent_silver & @black1m▕
 
 Github
-▕ https://github.com/Electrovirus/E-N-S.git
+▕ https://github.com/mamad051/fa.git
 
 ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
 ]],
@@ -341,11 +341,11 @@ Check @Ens_Commands
 ]],
     help_text = [[
 To see bot commands 🔰
-Checkout this channel 👉 @Ens_Commands
+Checkout this channel 👉 @fa_Commands
 ]],
 	help_text_super =[[
 To see bot commands 🔰
-Checkout this channel 👉 @Ens_Commands
+Checkout this channel 👉 @fa_Commands
 ]],
   }
   serialize_to_file(config, './data/config.lua')
