@@ -13,7 +13,7 @@ local function run(msg, matches)
  if msg.to.type == 'chat' then
     local user = 'chat#id'..msg.to.id
  local user = matches[2]
-  if matches[1] == "user" then
+  if matches[1] == "بلاک" then
       user = 'user#id'..user
       block_user(user, callback, false)
     end
@@ -26,7 +26,7 @@ end
  
 return {
   patterns = {
-    "^!block (user) (%d+)$",
+    "^بلاک (%d+)$",
   },
   run = run,
  -- https://github.com/SEEDTEAM/TeleSeed --
