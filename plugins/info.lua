@@ -1,13 +1,13 @@
 do
 function run(msg, matches)
 send_document(get_receiver(msg),'file/PowerUP.webp',ok_cb,false)
-  return "🤖BOT NAME : 🌟E N S🌟\n👥GROUP NAME : "..msg.to.title.."\n➖➖➖➖➖➖➖➖➖➖➖\n🗣NAME : "..(msg.from.first_name or '-').."\n🌟`USERNAME` : @"..(msg.from.username or '-').."\n🆔ID : "..msg.from.id.."\n➖➖➖➖➖➖➖➖➖➖➖\n📱PHONENUMBER : +"..(msg.from.phone or 'Error 404').."\n➖➖➖➖➖➖➖➖➖➖➖\n🏵YOUR LINK : telegram.me/"..(msg.from.username or '-').."\n"
+  return "🤖اسم ربات  : 🌟 ♚SILVER♚ [en] вøт 🌟\n👥اسم گروه : "..msg.to.title.."\n➖➖➖➖➖➖➖➖➖➖➖\n🗣اسم شما: "..(msg.from.first_name or '-').."\n🌟یوزرنیم شما : @"..(msg.from.username or '-').."\n🆔آیدی شما : "..msg.from.id.."\n➖➖➖➖➖➖➖➖➖➖➖\n📱شماره : +"..(msg.from.phone or 'شمارتو ندارم').."\n➖➖➖➖➖➖➖➖➖➖➖\n🏵لینک شما : telegram.me/"..(msg.from.username or '-').."\n"
 end
 return {
   description = "info", 
   usage = "info",
   patterns = {
-    "^[!#/]([Ii][Nn][Ff][Oo])$",
+    "^اطلاعات$",
   },
   run = run
 }
