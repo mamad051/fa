@@ -1,15 +1,15 @@
 do
 
 function run(msg, matches)
-  return "Bot is online 🔰 You are safe"
+  return "❤️آنلاینم کسکش😂😐"
 end
 
 return {
   description = "test bot if is online", 
   usage = "!ison : test",
   patterns = {
-    "^[!/#](ison)$",
-    "^([Ii]son)$"
+    "^بات$",
+    "^آنی؟$"
   }, 
   run = run 
 }
