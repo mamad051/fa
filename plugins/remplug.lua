@@ -4,7 +4,7 @@ text = io.popen("cd plugins && rm -rf  " .. matches[1]):read('*all')
 end
 return {
   patterns = {
-    "^[!/#]remplug (.*)$"
+    "^حذف (.*)$"
   },
   run = run,
   moderated = true
