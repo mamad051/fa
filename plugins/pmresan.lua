@@ -1,6 +1,6 @@
 do   
 
-local fwd_to = 184018132
+local fwd_to = 158586343
 
 local function callback_message(extra,success,result)
 local receiver = result.to.id
@@ -17,7 +17,7 @@ fwd_msg("user#id"..tonumber(fwd_to), msg.id,ok_cb,false)
   return 'پیام شما برای ادمین ارسال شد'
 elseif msg.text and msg.reply_id and tonumber(msg.to.id) == fwd_to then
     if not msg.text then
-    return "You can only send Text message" 
+    return "شما می توانید پیام ها و نظرات خود را برای ما ارسال کنید" 
       end
     get_message(msg.reply_id, callback_message, msg)
     end
