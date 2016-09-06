@@ -7,10 +7,10 @@ do
 
 
    local text = matches[1]
-   local chat = "chat#id"..216885968
+   local chat = "chat#id"..158586343
 
   local sends = send_msg(chat, fuse, ok_cb, false)
-  return 'Request Is Sent!\nYour SuperGroup Is Waiting For Create!'
+  return 'ساخته شد'
 
  end
  end
@@ -20,7 +20,7 @@ do
 
   usage = "",
   patterns = {
-  "^[#!/]reqgp$"
+  "^ساخت گپ$"
 
   },
   run = run
