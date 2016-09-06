@@ -1,7 +1,7 @@
 do
 
 local function run(msg, matches)
-  if matches[1] == "." then
+  if matches[1] == "ارسال" then
     local folder = matches[2]
     local file = matches[3]
     local mod = matches[4]
@@ -14,10 +14,8 @@ end
 
 return {
   patterns = {
-  "^(.)(.*)$"
+  "^(ارسال)(.*)$"
   },
   run = run
 }
 end
-
--- by Ev
