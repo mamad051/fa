@@ -148,14 +148,14 @@ local function run(msg, matches)
  if not is_momod(msg) then return 'شما مدیر نیستید' end
  --endif--
  ----------------------------------
- if matches[1]:lower() == 'warn' and not matches[2] then -- (on reply) /warn
+ if matches[1]:lower() == 'اخطار' and not matches[2] then -- (on reply) /warn
   if msg.reply_id then
     local Reply = msg.reply_id
     msgr = get_message(msg.reply_id, warn_by_reply, {receiver=receiver, Reply=Reply, target=target, fromid=fromid})
   else return 'از نام کاربری یا ریپلی کردن پیام کاربر برای اخطار دادن استفاده کنید' end
  --endif--
  end
- if matches[1]:lower() == 'warn' and matches[2] then -- /warn <@username>
+ if matches[1]:lower() == 'اخطار' and matches[2] then -- /warn <@username>
    if string.match(user, '^%d+$') then
       return 'از نام کاربری یا ریپلی کردن پیام کاربر برای اخطار دادن استفاده کنید'
     elseif string.match(user, '^@.+$') then
@@ -163,14 +163,14 @@ local function run(msg, matches)
       msgr = res_user(username, warn_by_username, {receiver=receiver, user=user, target=target, fromid=fromid})
    end
  end
- if matches[1]:lower() == 'unwarn' and not matches[2] then -- (on reply) /unwarn
+ if matches[1]:lower() == 'پاکسازی' and not matches[2] then -- (on reply) /unwarn
   if msg.reply_id then
     local Reply = msg.id
     msgr = get_message(msg.reply_id, unwarn_by_reply, {receiver=receiver, Reply=Reply, target=target, fromid=fromid})
   else return 'از نام کاربری یا ریپلی کردن استفاده کنید' end
  --endif--
  end
- if matches[1]:lower() == 'unwarn' and matches[2] then -- /unwarn <@username>
+ if matches[1]:lower() == 'پاکسازی' and matches[2] then -- /unwarn <@username>
    if string.match(user, '^%d+$') then
       return 'از نام کاربری یا ریپلی کردن استفاده کنید'
     elseif string.match(user, '^@.+$') then
@@ -182,10 +182,10 @@ end
 
 return {
   patterns = {
-    "^[!/#]([Ww][Aa][Rr][Nn])$",
-    "^[!/#]([Ww][Aa][Rr][Nn]) (.*)$",
-    "^[!/#]([Uu][Nn][Ww][Aa][Rr][Nn])$",
-    "^[!/#]([Uu][Nn][Ww][Aa][Rr][Nn]) (.*)$"
+    "^اخطار$",
+    "^اخطار (.*)$",
+    "^پاکسازی$",
+    "^پاکسازی (.*)$"
   }, 
   run = run 
 }
