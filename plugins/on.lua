@@ -6,7 +6,7 @@ end
 
 return {
   description = "test bot if is online", 
-  usage = "!ison : test",
+  usage = "آنی؟ : test",
   patterns = {
     "^آنلاینی؟$",
     "^آنی؟$"
