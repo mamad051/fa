@@ -68,7 +68,7 @@ local function mute_res(extra, success, result)
 end
 local function run(msg, matches)
   local target = msg.to.id
-  if matches[1] == "muteuser" then
+  if matches[1] == "بیصدا" then
     if type(msg.reply_id)~= "nil" then
 	  msgreply = get_message(msg.reply_id, muteuser_by_reply, false)
 	end
@@ -86,82 +86,82 @@ local function run(msg, matches)
 	  resolve_username(username, mute_res, cb_extra)
 	end
   end
-  if matches[1] == "mutelist" then
+  if matches[1] == "لیست بیصدا" then
     local channel_id = msg.to.id
 	return mute_list(channel_id)
   end
-  if matches[1] == "mute" and is_momod(msg) then
-    if matches[2]:lower() == "audio" then
+  if matches[1] == "بی صدا کردن" and is_momod(msg) then
+    if matches[2]:lower() == "آهنگ" then
       redis:set("mute:audio"..target, "yes")
-      return "Mute Audio has been enabled"
+      return "ارسال آهنگ قفل شد"
     end
-    if matches[2]:lower(0) == "text" then
+    if matches[2]:lower(0) == "متن" then
       redis:set("mute:text"..target, "yes")
-      return "Mute Text has been enabled"
+      return "ارسال متن قفل شد"
     end
-    if matches[2]:lower() == "video" then
+    if matches[2]:lower() == "فیلم" then
       redis:set("mute:video"..target, "yes")
-      return "Mute Video has been enabled"
+      return "ارسال فیلم قفل شد"
     end
-    if matches[2]:lower() == "photo" then 
+    if matches[2]:lower() == "عکس" then 
       redis:set("mute:photo"..target, "yes")
-      return "Mute Photo has been enabled"
+      return "ارسال عکس قفل شد"
     end
-    if matches[2]:lower() == "all" then
+    if matches[2]:lower() == "همه" then
       redis:set("mute:all"..target, "yes")
-      return "Mute All has been enabled"
+      return "چت قفل شد"
     end
-	if matches[2]:lower() == "gifs" then
+	if matches[2]:lower() == "گیف" then
 	  redis:set("mute:gif"..target, "yes")
-	  return "Gifs posting has been muted"
+	  return "ارسال گیف قفل شد"
 	end
-	if matches[2]:lower() == "contacts" then
+	if matches[2]:lower() == "شماره" then
 	  redis:set("mute:contact"..target, "yes")
-	  return "Share contacts has been muted"
+	  return "ارسال شماره قفل شد"
 	end
-	if matches[2]:lower() == "document" then
+	if matches[2]:lower() == "فایل" then
 	  redis:set("mute:document"..target, "yes")
-	  return "Mute Documents has been enabled"
+	  return "ارسال فایل قفل شد"
 	end
   end
-  if matches[1] == "unmute" and is_momod(msg) then
-    if matches[2]:lower() == "audio" then
+  if matches[1] == "مجاز کردن" and is_momod(msg) then
+    if matches[2]:lower() == "آهنگ" then
       redis:del("mute:audio"..msg.to.id)
-      return "Mute Audio has been disabled"
+      return "ارسال آهنگ مجاز شد"
     end
-    if matches[2]:lower() == "text" then
+    if matches[2]:lower() == "متن" then
       redis:del("mute:text"..msg.to.id)
-      return "Mute Text has been disabled"
+      return "ارسال متن مجاز شد"
     end
-    if matches[2]:lower() == "photo" then
+    if matches[2]:lower() == "عکس" then
       redis:del("mute:photo"..msg.to.id)
-      return "Mute Photo has been disabled"
+      return "ارسال عکس مجاز شد"
     end
-    if matches[2]:lower() == "video" then
+    if matches[2]:lower() == "فیلم" then
       redis:del("mute:video"..msg.to.id)
-      return "Mute Video has been disabled"
+      return "ارسال فیلم مجاز شد"
     end
-    if matches[2]:lower() == "all" then
+    if matches[2]:lower() == "همه" then
       redis:del("mute:all"..msg.to.id)
-      return "Mute All has been disabled"
+      return "چت باز شد"
     end
-	if matches[2]:lower() == "gifs" and is_momod(msg) then
+	if matches[2]:lower() == "گیف" and is_momod(msg) then
 	  redis:del("mute:gif"..target)
-	  return "Gifs posting has been unmuted"
+	  return "ارسال گیف مجاز شد"
 	end
-	if matches[2]:lower() == "contacts" and is_momod(msg) then
+	if matches[2]:lower() == "شماره" and is_momod(msg) then
 	  redis:del("mute:contact"..target)
-	  return "Share contacts has been unmuted"
+	  return "ارسال شماره مجاز شد"
 	end
-	if matches[2]:lower() == "document" then
+	if matches[2]:lower() == "فایل" then
 	  redis:del("mute:document"..target)
-	  return "Mute Documents has been disabled"
+	  return "ارسال فایل مجاز شد"
 	end
   end
-  if matches[1] == "muteslist" and is_momod(msg) then
+  if matches[1] == "لیست بیصدا" and is_momod(msg) then
     return show_mute(msg, target)
   end
-  if matches[1] == "clean" then
+  if matches[1] == "حذف" then
     local channel_id = msg.to.id
     return clean_mute(channel_id)
   end
@@ -225,13 +225,12 @@ local function pre_process(msg)
 end
 return {
   patterns = {
-    "^[/!#](muteuser)$",
-    "^[!/#](mute) (.*)$",
-    "^[/!#](unmute) (.*)$",
-	"^[/!#](muteuser) (.*)$",
-	"^[/!#](mutelist)$",
-    "^[!/#](muteslist)$",
-	"^[/!#](clean) mutelist$",
+    "^بی صدا$",
+    "^بی صدا کردن (.*)$",
+    "^مجاز کردن (.*)$",
+	"^بی صدا (.*)$",
+	"^لیست بیصدا$",
+	"^حذف (لیست بیصدا)$",
 	'%[(audio)%]',
     '%[(photo)%]',
     '%[(video)%]',
