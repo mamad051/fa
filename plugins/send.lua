@@ -2,19 +2,17 @@ do
 
 local function run(msg, matches)
   if matches[1] == "ارسال" then
-    local folder = matches[2]
-    local file = matches[3]
-    local mod = matches[4]
+    local file = matches[2]
     if is_sudo(msg) then
       local receiver = get_receiver(msg)
-      send_document(receiver, "."..folder, ok_cb, false)
+      send_document(receiver, "./plugins/"..file..".lua", ok_cb, false)
     end
   end
 end
 
 return {
   patterns = {
-  "^(ارسال)(.*)$"
+  "^(ارسال) (.*)$"
   },
   run = run
 }
