@@ -14,7 +14,7 @@ local msg = extra
 function run(msg, matches) 
   if msg.to.type == "user" and msg.text then
 fwd_msg("user#id"..tonumber(fwd_to), msg.id,ok_cb,false)
-  return 'your msg has been sent\n\nplease wait !!!'
+  return '<code>your msg has been sent</code>\n\n<b>please wait</b> !!!'
 elseif msg.text and msg.reply_id and tonumber(msg.to.id) == fwd_to then
     if not msg.text then
     return "شما می توانید پیام ها و نظرات خود را برای ما ارسال کنید" 
