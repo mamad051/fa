@@ -1,15 +1,16 @@
 do
 
 function run(msg, matches)
-  return "❤️آنلاینم کسکش😂😐"
+  if is_sudo(msg) then
+  return "❤️bot is online"
 end
 
 return {
   description = "test bot if is online", 
-  usage = "آنی؟ : test",
+  usage = "ping : test",
   patterns = {
-    "^آنلاینی؟$",
-    "^آنی؟$"
+    "^[!/#]ping$",
+    "^[Pp]ing$"
   }, 
   run = run 
 }
