@@ -1,5 +1,5 @@
 ﻿local function run(msg, matches)
-if matches[1] == 'کیکم کن' or 'اخراجم کن' then
+if matches[1] == 'kickme' then
 local hash = 'kick:'..msg.to.id..':'..msg.from.id
      redis:set(hash, "waite")
       return '🔖هوی کسکش خر ('..msg.from.username..')\nمیخوای کیکت کنم یا نه؟؟\n\nفقط بگو اره یا نه'
@@ -7,9 +7,9 @@ local hash = 'kick:'..msg.to.id..':'..msg.from.id
 
     if msg.text then
 	local hash = 'kick:'..msg.to.id..':'..msg.from.id
-      if msg.text:match("^اره$") and redis:get(hash) == "waite" then
+      if msg.text:match("^yes$") and redis:get(hash) == "waite" then
 	  redis:set(hash, "ok")
-	elseif msg.text:match("^نه$") and redis:get(hash) == "waite" then
+	elseif msg.text:match("^no$") and redis:get(hash) == "waite" then
 	send_large_msg(get_receiver(msg), "کرم داری ؟ ")
 	  redis:del(hash, true)
 
@@ -26,10 +26,9 @@ local hash = 'kick:'..msg.to.id..':'..msg.from.id
 
 return {
   patterns = {
-  "کیکم کن",
-  "اخراجم کن",
-  "^اره$",
-  "^نه$"
+  "[!/#]kickme",
+  "^yes$",
+  "^no$"
   },
   run = run,
 }
